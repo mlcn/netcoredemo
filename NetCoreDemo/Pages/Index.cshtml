@@ -1,0 +1,37 @@
+﻿@page
+@model NetCoreDemo.Pages.IndexModel
+@{
+	ViewData["Title"] = "Home page";
+}
+
+<div>
+	<h3>Razor Pages Version</h3>
+	<div class="row">
+		<div class="col-md-4">
+			<form method="post">
+				<div class="form-group">
+					<label asp-for="Keywords" class="control-label"></label>
+					<input asp-for="Keywords" class="form-control"/>
+					<span asp-validation-for="Keywords" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="URL" class="control-label"></label>
+					<input asp-for="URL" class="form-control"/>
+					<span asp-validation-for="URL" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<input type="submit" value="Search" class="btn btn-default"/>
+				</div>
+			</form>
+		</div>
+	</div>
+	<br/>
+	<div id="Results">
+		<h4>Results:</h4>
+		<p>@string.Join(", ", Model?.SearchResults)</p>
+	</div>
+</div>
+
+@section Scripts {
+	@{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

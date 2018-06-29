@@ -1,0 +1,38 @@
+﻿@model NetCoreDemo.Models.MVCDemo.MVCDemoModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+	ViewData["Title"] = "MVC Version";
+	Layout = "~/Pages/_Layout.cshtml";
+}
+
+<div>
+	<h3>MVC Version</h3>
+	<div class="row">
+		<div class="col-md-4">
+			<form asp-action="Search" method="post">
+				<div class="form-group">
+					<label asp-for="Keywords" class="control-label"></label>
+					<input asp-for="Keywords" class="form-control" />
+					<span asp-validation-for="Keywords" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<label asp-for="UrlToFind" class="control-label"></label>
+					<input asp-for="UrlToFind" class="form-control" />
+					<span asp-validation-for="UrlToFind" class="text-danger"></span>
+				</div>
+				<div class="form-group">
+					<input type="submit" value="Search" class="btn btn-default" />
+				</div>
+			</form>
+		</div>
+	</div>
+	<br />
+	<div id="Results">
+		<h4>Results:</h4>
+		<p>@ViewData["SearchResults"]</p>
+	</div>
+</div>
+
+@section Scripts {
+	@{ await Html.RenderPartialAsync("~/Pages/_ValidationScriptsPartial.cshtml"); }
+}
